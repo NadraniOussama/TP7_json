@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<String> elt = getPays("pays.json");
-        ArrayList<String> elt1 = getPays("filieres.json");
+        ArrayList<String> elt = getJSONContent("pays.json","cnom");
+        ArrayList<String> elt1 = getJSONContent("filieres.json","cnom");
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
         Spinner spinner1 = (Spinner)findViewById(R.id.spinner1);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.ligne,R.id.txt,elt);
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         spinner1.setAdapter(adapter1);
     }
 
-    private ArrayList<String> getPays(String fileName) {
+    private ArrayList<String> getJSONContent(String fileName, String key) {
         JSONArray jsonArray = null;
         ArrayList<String>cList = new ArrayList<String>();
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             if (jsonArray != null) {
 
                 for (int i = 0; i<jsonArray.length(); i++)
-                    cList.add(jsonArray.getJSONObject(i).getString("cnom"));
+                    cList.add(jsonArray.getJSONObject(i).getString(key));
 
             }
 
