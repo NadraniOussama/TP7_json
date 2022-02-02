@@ -36,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String>cList = new ArrayList<String>();
 
         try {
-            InputStream is = getResources().getAssets().open(fileName);
-            int size = is.available();
+            InputStream in = getResources().getAssets().open(fileName);
+            int size = in.available();
             byte[] data = new byte[size];
-            is.read(data);
-            is.close();
+            in.read(data);
+            in.close();
             String json = new String(data, "UTF-8");
             jsonArray = new JSONArray(json);
             if (jsonArray != null) {
